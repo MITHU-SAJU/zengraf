@@ -1,0 +1,103 @@
+.form-container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    max-width: 1200px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+
+ 
+  .content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #4d5b6b;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  .btn-primary {
+    background-color: #7a5ef8;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    background-color: #6249d9;
+  }
+    
+  .form-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: #4d5b6b;
+    margin-bottom: 20px;
+  }
+  
+  .employee-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 40px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group label {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #4d5b6b;
+  }
+  h2{
+    font-size: 26px;
+  }
+  .form-group input,
+  .form-group select {
+    padding: 10px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus {
+    border-color: #7a5ef8;
+  }
+  
+  .save-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    font-size: 15px;
+    cursor: pointer;
+    margin-top: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .save-btn:hover {
+    background-color: #218838;
+  }
+  
+  /* Mobile responsive */
+  @media (max-width: 768px) {
+    .employee-form {
+      grid-template-columns: 1fr;
+    }
+  
+    .save-btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+  

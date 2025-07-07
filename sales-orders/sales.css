@@ -1,0 +1,209 @@
+.item-table-wrapper {
+  width: 100%;
+  margin-top: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow-x: auto;
+  padding: 10px;
+  background-color: #fdfdfd;
+}
+
+.item-table-header,
+.item-table-row {
+  display: flex;
+  justify-content: center;         /* Center horizontally */
+  align-items: center;             /* Center vertically */
+  gap: 10px;
+  padding: 8px 0;
+  text-align: center;              /* Center text inside each column */
+}
+
+/* Ensure all children inside headers and rows are centered */
+.item-table-header > div,
+.item-table-row > div {
+  flex: 1;
+  min-width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+/* dropdown item css */
+.item-table-row select {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Optional: input alignment */
+.item-table-row input {
+  text-align: center;
+}
+
+
+.item-table-header {
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+  background-color: #f1f1f1;
+}
+
+.item-table-header > div,
+.item-table-row > div {
+  flex: 1;
+  min-width: 100px;
+}
+
+.item-table-row > div input {
+  width: 100%;
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.styled-add-btn {
+  padding: 6px 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.styled-add-btn:hover {
+  background-color: #218838;
+}
+
+.plus-icon {
+  font-weight: bold;
+}
+.delete-btn {
+  background-color: #dc3545; /* Bootstrap red */
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-btn:hover {
+  background-color: #c82333;
+}
+
+.delete-btn:active {
+  transform: scale(0.95);
+}
+
+.delete-btn::after {
+  content: "";
+}
+
+
+/* Add button style */
+.item-table-row button[title="Add New Row"],
+.item-table-row button[title="Add Row"] {
+  background-color: #28a745; /* green */
+}
+
+/* Delete button style */
+.item-table-row .delete-btn {
+  background-color: #dc3545; /* red */
+  margin-left: 5px;
+}
+
+/* Responsive tweak */
+@media (max-width: 768px) {
+  .item-table-header,
+  .item-table-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .item-table-header div:nth-child(n+3),
+  .item-table-row div:nth-child(n+3) {
+    display: none;
+  }
+}
+.section-header {
+  padding: 16px 0;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #ccc;
+
+}
+
+.section-header h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+}
+
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap; /* Allows wrapping on smaller screens */
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 180px; /* Flexible width */
+  min-width: 160px;
+}
+
+
+#address-options {
+  display: flex;
+  gap: 30px;
+  padding: 12px 20px;
+  margin-top: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f5faff;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+#address-options label {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+#address-options input[type="radio"] {
+  margin-right: 8px;
+  accent-color: #007bff; /* blue radio color */
+  transform: scale(1.1);
+}
+
+
+/* image preview */
+.image-preview-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.preview-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+}

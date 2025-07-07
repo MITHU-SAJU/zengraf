@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>New Order In</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="./order.css">
+</head>
+
+<body>
+  <!-- Toggle Button -->
+  <div class="toggle-btn" id="toggleBtn">
+    <i class="fas fa-bars"></i>
+  </div>
+
+  <!-- Sidebar -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <img src="../assets/logo.png" alt="Logo" />
+    </div>
+    <ul>
+      <li><a href="../index.html"><i class="fas fa-home"></i><span>Dashboard</span></a></li>
+      <li>
+        <a href="../sales-orders/sales-order-list.html">
+          <i class="fas fa-file-invoice-dollar"></i>
+          <span> Sales Orders</span>
+        </a>
+      </li>
+
+      <!-- Job Orders -->
+      <li>
+        <a href="./enquiry-list.html">
+          <i class="fas fa-briefcase"></i>
+          <span> Job Orders</span>
+        </a>
+      </li>
+      <li><a href="../reports/reports.html"><i class="fas fa-check-circle"></i><span>Reports</span></a></li>
+      <li class="has-submenu">
+        <a href="#" class="submenu-toggle">
+          <i class="fas fa-folder-open"></i><span>Masters</span><i class="fas fa-chevron-down arrow"></i>
+        </a>
+        <ul class="submenu">
+          <li><a href="../masters/customerList.html"><i class="fas fa-users"></i><span> Customers</span></a></li>
+          <li><a href="../masters/vendorList.html"><i class="fas fa-store"></i><span> Vendors</span></a></li>
+          <li><a href="../masters/worktypeList.html"><i class="fas fa-tasks"></i><span> Work List</span></a></li>
+          <li><a href="../masters/Employee/employee.html"><i class="fas fa-user-tie"></i><span> Employees</span></a>
+          </li>
+          <li><a href="../masters/Employee/emp-category.html"><i class="fas fa-layer-group"></i><span> Employee
+                Categories</span></a></li>
+          <li>
+            <a href="../masters/item-names/item-name.html">
+              <i class="fas fa-boxes"></i>
+              <span>Item Types</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="has-submenu">
+        <a href="#" class="submenu-toggle">
+          <i class="fas fa-cog"></i><span>Settings</span><i class="fas fa-chevron-down arrow"></i>
+        </a>
+        <ul class="submenu">
+          <li><a href="../Settings/company-details.html"><i class="fas fa-users"></i><span>Company Details</span></a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content" id="mainContent">
+    <div class="form-toggle">
+      <label><input type="radio" name="formType" value="individual" checked> Individual</label>
+      <label><input type="radio" name="formType" value="company"> Company</label>
+    </div>
+
+    <div class="form-container">
+      <!-- Individual Form -->
+      <form id="individualForm">
+        <h2>Individual Service Form</h2>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Customer Name</label>
+            <input type="text" placeholder="Enter Name" />
+          </div>
+          <div class="form-group">
+            <label>Alternative No</label>
+            <input type="text" placeholder="Enter Alt Number" />
+          </div>
+          <div class="form-group">
+            <label>Area</label>
+            <input type="text" placeholder="Enter Area" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>City</label>
+            <input type="text" placeholder="Enter City" />
+          </div>
+          <div class="form-group">
+            <label>Call Type</label>
+            <input type="text" placeholder="Enter Call Type" />
+          </div>
+          <div class="form-group">
+            <label>AC Brand</label>
+            <input type="text" placeholder="Enter Brand" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Remarks</label>
+            <textarea rows="2" placeholder="Enter Remarks"></textarea>
+          </div>
+        </div>
+        <button type="submit" class="save-btn">Submit</button>
+      </form>
+
+      <!-- Company Form -->
+      <form id="companyForm" class="hidden">
+        <h2>Company Service Form</h2>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Company Name</label>
+            <input type="text" placeholder="Enter Company Name" />
+          </div>
+          <div class="form-group">
+            <label>Company ID</label>
+            <input type="text" placeholder="Enter ID" />
+          </div>
+          <div class="form-group">
+            <label>Address</label>
+            <input type="text" placeholder="Enter Address" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>City</label>
+            <input type="text" placeholder="Enter City" />
+          </div>
+          <div class="form-group">
+            <label>Type of Work</label>
+            <input type="text" placeholder="Enter Work Type" />
+          </div>
+          <div class="form-group">
+            <label>Assigned To</label>
+            <select>
+              <option>Select</option>
+              <option>Vishnu</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Remarks</label>
+            <textarea rows="2" placeholder="Enter Remarks"></textarea>
+          </div>
+        </div>
+        <button type="submit" class="save-btn">Submit</button>
+      </form>
+    </div>
+  </main>
+
+  <script src="../sidebar-loader.js"></script>
+  <script>
+    const formRadios = document.querySelectorAll('input[name="formType"]');
+    const individualForm = document.getElementById('individualForm');
+    const companyForm = document.getElementById('companyForm');
+
+    formRadios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        if (radio.value === 'individual') {
+          individualForm.classList.remove('hidden');
+          companyForm.classList.add('hidden');
+        } else {
+          companyForm.classList.remove('hidden');
+          individualForm.classList.add('hidden');
+        }
+      });
+    });
+  </script>
+
+</body>
+
+</html>

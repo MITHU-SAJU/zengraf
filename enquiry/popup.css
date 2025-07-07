@@ -1,0 +1,115 @@
+
+    .open-btn {
+      padding: 12px 24px;
+      background: #007bff;
+      text-decoration: none;
+      color: #fff;
+      border: none;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+     
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 0.3s ease-in-out;
+      z-index: 999;
+    }
+
+    .modal:target {
+      display: flex;
+    }
+
+    .modal-content {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      animation: zoomIn 0.3s ease-in-out;
+    }
+
+    .option-container {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .option-card {
+      background: #f0f8ff;
+      padding: 1.5rem 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      flex: 1 1 200px;
+      text-align: center;
+      font-size: larger;
+      transition: transform 0.3s, background 0.3s;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .option-card:hover {
+      transform: translateY(-5px);
+      background: #e6f0ff;
+    }
+
+    .close-btn {
+      margin-top: 1rem;
+      background: #ff3b3b;
+      color: #fff;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    @keyframes zoomIn {
+      from {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        background: rgba(0, 0, 0, 0);
+      }
+      to {
+        background: rgba(0, 0, 0, 0.4);
+      }
+    }
+
+
+    .hidden {
+  display: none;
+}
+/* Default hidden state with animation prep */
+
+
+/* When made visible */
+.option-container.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Keep .hidden for JS toggling */
+.hidden {
+  display: none;
+}

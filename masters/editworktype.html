@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title> Worktype list</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../masters/editworktype.css">
+
+</head>
+
+<body>
+
+  <!-- Sidebar will be injected here -->
+  <div class="toggle-btn" id="toggleBtn">
+    <i class="fas fa-bars"></i>
+  </div>
+
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <img src="../assets/logo.png" alt="Logo" />
+    </div>
+    <ul>
+      <li><a href="../index.html"><i class="fas fa-home"></i><span>Dashboard</span></a></li>
+      <li>
+        <a href="../sales-orders/sales-order-list.html">
+          <i class="fas fa-file-invoice-dollar"></i>
+          <span> Sales Orders</span>
+        </a>
+      </li>
+
+      <!-- Job Orders -->
+      <li>
+        <a href="../enquiry/enquiry-list.html">
+          <i class="fas fa-briefcase"></i>
+          <span> Job Orders</span>
+        </a>
+      </li>
+      <li><a href="../reports/reports.html"><i class="fas fa-check-circle"></i><span>Reports</span></a></li>
+      <li class="has-submenu">
+        <a href="#" class="submenu-toggle">
+          <i class="fas fa-folder-open"></i><span>Masters</span><i class="fas fa-chevron-down arrow"></i>
+        </a>
+        <ul class="submenu">
+          <li><a href="../../masters/customerList.html"><i class="fas fa-users"></i><span> Customers</span></a></li>
+          <li><a href="../../masters/vendorList.html"><i class="fas fa-store"></i><span> Vendors</span></a></li>
+          <li><a href="./worktypeList.html"><i class="fas fa-tasks"></i><span> Work Type</span></a></li>
+          <li><a href="./Employee/employee.html"><i class="fas fa-user-tie"></i><span> Employees</span></a></li>
+          <li><a href="./Employee/emp-category.html"><i class="fas fa-layer-group"></i><span> Employee
+                Categories</span></a></li>
+          <li>
+            <a href="./item-names/item-name.html">
+              <i class="fas fa-boxes"></i>
+              <span>Item Types</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="has-submenu">
+        <a href="#" class="submenu-toggle">
+          <i class="fas fa-cog"></i><span>Settings</span><i class="fas fa-chevron-down arrow"></i>
+        </a>
+        <ul class="submenu">
+          <li><a href="../Settings/company-details.html"><i class="fas fa-users"></i><span>Company Details</span></a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="main-content" id="mainContent">
+    <div class="content-header">
+      <h2>Edit Worktype</h2>
+
+    </div>
+    <div class="container">
+
+      <form class="worktype-form">
+        <div class="form-group">
+          <label for="worktypeName">WORKTYPE NAME</label>
+          <input type="text" id="worktypeName" placeholder="Enter worktype name" value="NEW PROJECT" />
+        </div>
+        <button type="submit" class="save-btn">✔ Save</button>
+      </form>
+    </div>
+
+  </div>
+  <script src="../sidebar-loader.js"></script>
+</body>
+
+</html>

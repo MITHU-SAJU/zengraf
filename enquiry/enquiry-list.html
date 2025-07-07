@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Add Vendor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="./enquiry.css">
+  <link rel="stylesheet" href="./popup.css">
+</head>
+
+<body>
+
+  <!-- Sidebar will be injected here -->
+  <div class="toggle-btn" id="toggleBtn">
+    <i class="fas fa-bars"></i>
+  </div>
+
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <img src="../assets/logo.png" alt="Logo" />
+    </div>
+    <ul>
+      <li><a href="../index.html"><i class="fas fa-home"></i><span>Dashboard</span></a></li>
+      <li>
+        <a href="../sales-orders/sales-order-list.html">
+          <i class="fas fa-file-invoice-dollar"></i>
+          <span> Sales Orders</span>
+        </a>
+      </li>
+
+      <!-- Job Orders -->
+      <li>
+        <a href="./enquiry-list.html">
+          <i class="fas fa-briefcase"></i>
+          <span> Job Orders</span>
+        </a>
+      </li>
+      </li>
+      <li><a href="../reports/reports.html"><i class="fas fa-check-circle"></i><span>Reports</span></a></li>
+      <li class="has-submenu">
+        <a href="#" class="submenu-toggle">
+          <i class="fas fa-folder-open"></i><span>Masters</span><i class="fas fa-chevron-down arrow"></i>
+        </a>
+        <ul class="submenu">
+          <li><a href="../masters/customerList.html"><i class="fas fa-users"></i><span> Customers</span></a></li>
+          <li><a href="../masters/vendorList.html"><i class="fas fa-store"></i><span> Vendors</span></a></li>
+          <li><a href="../masters/worktypeList.html"><i class="fas fa-tasks"></i><span> Work List</span></a></li>
+          <li><a href="../masters/Employee/employee.html"><i class="fas fa-user-tie"></i><span> Employees</span></a>
+          </li>
+          <li><a href="../masters/Employee/emp-category.html"><i class="fas fa-layer-group"></i><span> Employee
+                Categories</span></a></li>
+          <li>
+            <a href="../masters/item-names/item-name.html">
+              <i class="fas fa-boxes"></i>
+              <span>Item Types</span>
+            </a>
+          </li>
+
+        </ul>
+      </li>
+      <li class="has-submenu">
+        <a href="#" class="submenu-toggle">
+          <i class="fas fa-cog"></i><span>Settings</span><i class="fas fa-chevron-down arrow"></i>
+        </a>
+        <ul class="submenu">
+          <li><a href="../Settings/company-details.html"><i class="fas fa-users"></i><span>Company Details</span></a>
+          </li>
+        </ul>
+      </li>
+
+    </ul>
+  </nav>
+  <!-- Main Content -->
+  <main class="main-content" id="mainContent">
+    <div class="content-header">
+      <h2>Job Orders</h2>
+      <!-- <a class="btn-primary" href="./add-employee.html">New Enquiry</a> -->
+      <a href="#popupModal" class="btn-primary">Create New Order</a>
+    </div>
+    <div class="container">
+      <!-- <div class="filter-glass">
+        <div class="filter-header">
+          <h3 class="filter-heading">🔍 Filter Enquiries</h3>
+          <div class="filter-actions">
+            <button id="applyFilterBtn" class="fancy-btn primary">Filter</button>
+            <button id="resetFilterBtn" class="fancy-btn secondary">Reset</button>
+            <button id="downloadBtn" class="fancy-btn success">Download</button>
+
+          </div>
+        </div>
+      
+        <div class="filter-row">
+          <div class="filter-group">
+            <input type="text" id="customerFilter" placeholder="Search Customer" />
+          </div>
+
+          <div class="filter-group">
+            <select id="worktypeFilter">
+              <option value="">All Worktypes</option>
+              <option value="Order In">Order In</option>
+              <option value="Order Out">Order Out</option>
+            </select>
+          </div>
+
+      
+          <div class="filter-group">
+            <select id="selectIncharge">
+              <option value="">Incharge</option>
+              <option value="Krishna">Krishna</option>
+              <option value="Vishnu">Vishnu</option>
+              <option value="Balaji">Balaji</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <select id="statusFilter">
+              <option value="">All Status</option>
+              <option value="COMPLETED">Completed</option>
+              <option value="PENDING">Pending</option>
+            </select>
+          </div>
+      
+          
+        </div>
+      </div> -->
+
+      <table id="orderTable">
+        <thead>
+          <tr>
+            <th>S.No</th>
+            <th>Order ID</th>
+            <th>Customer</th>
+            <th>Location</th>
+            <th>Mobile</th>
+            <th>Worktype</th>
+            <th>Incharge</th>
+            <th>Status</th>
+            <th>Enquiry</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td><a href="#">BCS/19-20/ENQ/0050</a></td>
+            <td>Ctrl-next</td>
+            <td>Tiruppur</td>
+            <td>9500582836</td>
+            <td>Order In</td>
+            <td>KRISHNA</td>
+            <td class="status-td">
+              <span class="status-badge status-completed">COMPLETED</span>
+              <div class="status-popup">
+                <div class="step">
+
+                  <div class="circle">
+                    <a href="#detailsModal" class="trigger-details-btn">1</a>
+                  </div>
+                  <div class="label">
+                    CLIENT<br>LOCATION<br>VISIT<br>
+
+                  </div>
+                </div>
+                <div class="line"></div>
+                <div class="step">
+                  <div class="circle">
+                    <a href="#detailsModal" class="trigger-details-btn">2</a>
+                  </div>
+                  <div class="label">CLIENT<br>LOCATION<br>VISIT</div>
+                </div>
+                <div class="line"></div>
+                <div class="step">
+                  <div class="circle">
+                    <a href="#detailsModal" class="trigger-details-btn">3</a>
+                  </div>
+                  <div class="label">ITEM BACK<br>TO<br>OFFICE</div>
+                </div>
+              </div>
+            </td>
+
+            <td class="popup-container">
+              <button class="popup-toggle"><i class="fas fa-ellipsis-v"></i></button>
+              <div class="popup-icons">
+                <button class="icon-btn" title="Forward"><i class="fas fa-random"></i></button>
+                <button class="icon-btn" title="Settings"><i class="fas fa-cog"></i></button>
+                <button class="icon-btn" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                <button class="icon-btn" title="Cancel"><i class="fas fa-times"></i></button>
+                <button class="icon-btn" title="Repeat"><i class="fas fa-redo"></i></button>
+              </div>
+            </td>
+
+          </tr>
+          <tr>
+            <td>2</td>
+            <td><a href="#">BCS/19-20/ENQ/0049</a></td>
+            <td>REO Styles</td>
+            <td>Tiruppur</td>
+            <td>9500582836</td>
+            <td>Order Out</td>
+            <td>KRISHNA</td>
+            <td class="status-td">
+              <span class="status-badge status-pending">PENDING</span>
+              <div class="status-popup pending-popup">
+                <div class="step">
+                  <div class="circle">1</div>
+                  <div class="label">CALL<br>CUSTOMER</div>
+                </div>
+                <div class="line"></div>
+                <div class="step">
+                  <div class="circle">2</div>
+                  <div class="label">SITE<br>VISIT</div>
+                </div>
+                <div class="line"></div>
+                <div class="step">
+                  <div class="circle">3</div>
+                  <div class="label">WAITING FOR<br>CONFIRMATION</div>
+                </div>
+              </div>
+            </td>
+
+            <td class="popup-container">
+              <button class="popup-toggle"><i class="fas fa-ellipsis-v"></i></button>
+              <div class="popup-icons">
+                <button class="icon-btn" title="Forward"><i class="fas fa-random"></i></button>
+                <button class="icon-btn" title="Settings"><i class="fas fa-cog"></i></button>
+                <button class="icon-btn" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                <button class="icon-btn" title="Cancel"><i class="fas fa-times"></i></button>
+                <button class="icon-btn" title="Repeat"><i class="fas fa-redo"></i></button>
+              </div>
+            </td>
+
+          </tr>
+          <tr>
+            <td>2</td>
+            <td><a href="#">BCS/19-20/ENQ/0049</a></td>
+            <td>REO Styles</td>
+            <td>Tiruppur</td>
+            <td>9500582836</td>
+            <td>Order In</td>
+            <td>KRISHNA</td>
+            <td class="status-td">
+              <span class="status-badge status-completed">COMPLETED</span>
+              <div class="status-popup">
+                <div class="step">
+                  <div class="circle">1</div>
+                  <div class="label">WHATSAPP<br>GROUP<br>UPDATE</div>
+                </div>
+                <div class="line"></div>
+                <div class="step">
+                  <div class="circle">2</div>
+                  <div class="label">CLIENT<br>LOCATION<br>VISIT</div>
+                </div>
+                <div class="line"></div>
+                <div class="step">
+                  <div class="circle">3</div>
+                  <div class="label">ITEM BACK<br>TO OFFICE</div>
+                </div>
+              </div>
+            </td>
+            <td class="popup-container">
+              <button class="popup-toggle"><i class="fas fa-ellipsis-v"></i></button>
+              <div class="popup-icons">
+                <button class="icon-btn" title="Forward"><i class="fas fa-random"></i></button>
+                <button class="icon-btn" title="Settings"><i class="fas fa-cog"></i></button>
+                <button class="icon-btn" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                <button class="icon-btn" title="Cancel"><i class="fas fa-times"></i></button>
+                <button class="icon-btn" title="Repeat"><i class="fas fa-redo"></i></button>
+              </div>
+            </td>
+
+          </tr>
+          <tr>
+            <td>2</td>
+            <td><a href="#">BCS/19-20/ENQ/0049</a></td>
+            <td>REO Styles</td>
+            <td>Tiruppur</td>
+            <td>9500582836</td>
+            <td>Order In</td>
+            <td>KRISHNA</td>
+            <td class="status-td">
+              <span class="status-badge status-pending">PENDING</span>
+              <div class="status-popup pending-popup">
+                <div class="step">
+                  <div class="circle">1</div>
+                  <div class="label">CALL<br>CUSTOMER</div>
+                </div>
+                <div class="line"></div>
+                <div class="step">
+                  <div class="circle">2</div>
+                  <div class="label">SITE<br>VISIT</div>
+                </div>
+                <div class="line"></div>
+                <div class="step">
+                  <div class="circle">3</div>
+                  <div class="label">WAITING FOR<br>CONFIRMATION</div>
+                </div>
+              </div>
+            </td>
+            <td class="popup-container">
+              <button class="popup-toggle"><i class="fas fa-ellipsis-v"></i></button>
+              <div class="popup-icons">
+                <button class="icon-btn" title="Forward"><i class="fas fa-random"></i></button>
+                <button class="icon-btn" title="Settings"><i class="fas fa-cog"></i></button>
+                <button class="icon-btn" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                <button class="icon-btn" title="Cancel"><i class="fas fa-times"></i></button>
+                <button class="icon-btn" title="Repeat"><i class="fas fa-redo"></i></button>
+              </div>
+            </td>
+
+          </tr>
+          <tr>
+            <td>2</td>
+            <td><a href="#">BCS/19-20/ENQ/0049</a></td>
+            <td>REO Styles</td>
+            <td>Tiruppur</td>
+            <td>9500582836</td>
+            <td>Order Out</td>
+            <td>KRISHNA</td>
+            <td class="status-td">
+              <span class="status-badge status-completed">COMPLETED</span>
+              <div class="status-popup">
+                <div class="step">
+                  <div class="circle">1</div>
+                  <div class="label">WHATSAPP<br>GROUP<br>UPDATE</div>
+                </div>
+                <div class="line"></div>
+                <div class="step">
+                  <div class="circle">2</div>
+                  <div class="label">
+                    CLIENT<br>LOCATION<br>VISIT<br>
+                    <a href="#detailsModal" class="trigger-details-btn">View Details</a>
+                  </div>
+                </div>
+                <div class="line"></div>
+                <div class="step">
+                  <div class="circle">3</div>
+                  <div class="label">ITEM BACK<br>TO OFFICE</div>
+                </div>
+              </div>
+            </td>
+            <td class="popup-container">
+              <button class="popup-toggle"><i class="fas fa-ellipsis-v"></i></button>
+              <div class="popup-icons">
+                <button class="icon-btn" title="Forward"><i class="fas fa-random"></i></button>
+                <button class="icon-btn" title="Settings"><i class="fas fa-cog"></i></button>
+                <button class="icon-btn" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                <button class="icon-btn" title="Cancel"><i class="fas fa-times"></i></button>
+                <button class="icon-btn" title="Repeat"><i class="fas fa-redo"></i></button>
+              </div>
+            </td>
+
+          </tr>
+          <tr>
+            <td>2</td>
+            <td><a href="#">BCS/19-20/ENQ/0049</a></td>
+            <td>REO Styles</td>
+            <td>Tiruppur</td>
+            <td>9500582836</td>
+            <td>Order In</td>
+            <td>KRISHNA</td>
+            <td class="status-td">
+              <span class="status-badge status-completed">COMPLETED</span>
+              <div class="status-popup">
+                <div class="step">
+                  <div class="circle">1</div>
+                  <div class="label">WHATSAPP<br>GROUP<br>UPDATE</div>
+                </div>
+                <div class="line"></div>
+                <div class="step">
+                  <div class="circle">2</div>
+                  <div class="label">CLIENT<br>LOCATION<br>VISIT</div>
+                </div>
+                <div class="line"></div>
+                <div class="step">
+                  <div class="circle">3</div>
+                  <div class="label">ITEM BACK<br>TO OFFICE</div>
+                </div>
+              </div>
+            </td>
+            <td class="popup-container">
+              <button class="popup-toggle"><i class="fas fa-ellipsis-v"></i></button>
+              <div class="popup-icons">
+                <button class="icon-btn" title="Forward"><i class="fas fa-random"></i></button>
+                <button class="icon-btn" title="Settings"><i class="fas fa-cog"></i></button>
+                <button class="icon-btn" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                <button class="icon-btn" title="Cancel"><i class="fas fa-times"></i></button>
+                <button class="icon-btn" title="Repeat"><i class="fas fa-redo"></i></button>
+              </div>
+            </td>
+
+          </tr>
+          <!-- Add more rows as needed -->
+        </tbody>
+      </table>
+
+      <div class="pagination">
+        <button>&laquo;</button>
+        <button class="active">1</button>
+        <button>2</button>
+        <button>&raquo;</button>
+      </div>
+    </div>
+
+
+    <div id="popupModal" class="modal">
+      <div class="modal-content">
+        <h2>Choose Order Type</h2>
+        <div class="option-container">
+          <a href="./sales.html" id="salesOption" class="option-card">Sales</a>
+          <a href="./service.html" id="serviceOption" class="option-card">Service</a>
+        </div>
+
+        <!-- Hidden initially -->
+        <div id="serviceTypeOptions" class="option-container hidden">
+          <a href="individual-form.html" class="option-card">Individual</a>
+          <a href="company-form.html" class="option-card">Company</a>
+        </div>
+
+        <a href="#" class="close-btn">Cancel</a>
+      </div>
+    </div>
+    <div id="detailsModal" class="custom-details-modal">
+      <div class="custom-details-content">
+        <a href="#" class="custom-details-close">&times;</a>
+        <div class="custom-details-header">Uploaded Task Details</div>
+
+        <div class="custom-details-section">
+          <div class="custom-detail-item"><strong>Enquiry:</strong> BCS/19-20/ENQ/0050</div>
+          <div class="custom-detail-item"><strong>Mobile:</strong> 9500582836</div>
+          <div class="custom-detail-item"><strong>Date:</strong> 26-03-2025</div>
+          <div class="custom-detail-item"><strong>Time:</strong> 15:25 PM</div>
+          <div class="custom-detail-item"><strong>Task:</strong> WHATSAPP GROUP UPDATE</div>
+          <div class="custom-detail-item"><strong>Status:</strong> COMPLETED</div>
+        </div>
+
+        <hr>
+
+        <div class="custom-details-table">
+          <div class="custom-details-row header">
+            <div>Date & Time</div>
+            <div>Status</div>
+            <div>Remark</div>
+            <div>User</div>
+          </div>
+          <div class="custom-details-row">
+            <div>26-03-2025 15:30 PM</div>
+            <div>PERSON ALLOCATED</div>
+            <div>Person allocated and sent to client location</div>
+            <div>KRISHNA</div>
+          </div>
+          <div class="custom-details-row">
+            <div>26-03-2025 15:30 PM</div>
+            <div>UPDATED</div>
+            <div>Person allocated and sent to client location</div>
+            <div>KRISHNA</div>
+          </div>
+        </div>
+
+        <hr>
+
+        <!-- Uploaded Images Section -->
+        <div class="custom-uploaded-images">
+          <div class="custom-details-header">Uploaded Images</div>
+          <div class="custom-images-grid">
+            <img src="../assets/img1" alt="Uploaded 1">
+            <img src="../assets/img2.jpg" alt="Uploaded 2">
+            <img src="../assets/img3.jpg" alt="Uploaded 3">
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </main>
+
+  <!-- Sidebar loading script -->
+  <script src="../sidebar-loader.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const serviceOption = document.getElementById('serviceOption');
+      const salesOption = document.getElementById('salesOption');
+      const serviceTypeOptions = document.getElementById('serviceTypeOptions');
+
+      serviceOption.addEventListener('click', function (e) {
+        e.preventDefault(); // prevent default link behavior
+        serviceTypeOptions.classList.remove('hidden');
+      });
+
+      salesOption.addEventListener('click', function () {
+        // If needed, redirect to the Sales form directly
+        window.location.href = "new-order-in.html";
+      });
+    });
+  </script>
+
+</body>
+
+</html>

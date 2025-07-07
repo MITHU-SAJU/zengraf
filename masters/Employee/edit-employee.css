@@ -1,0 +1,134 @@
+/* Container styling */
+.form-container {
+    background: white;
+    max-width: 1200px;
+    
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Form title styling */
+  .form-title {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #4d5b6b;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+  }
+  
+  /* Content header styling */
+  .content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    color: #4d5b6b;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  
+  /* Form layout styling (grid-based) */
+  .employee-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Flexibly sized columns */
+    gap: 20px 40px;
+    margin-bottom: 25px;
+  }
+  
+  /* Form field group styling */
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Label styling */
+  .form-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #4d5b6b;
+    margin-bottom: 6px;
+  }
+  
+  /* Input and select field styling */
+  .form-group input,
+  .form-group select {
+    padding: 10px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+    background-color: #fff;
+  }
+  
+  /* Focus effect on input/select */
+  .form-group input:focus,
+  .form-group select:focus {
+    border-color: #7a5ef8;
+    box-shadow: 0 0 0 2px rgba(122, 94, 248, 0.1);
+  }
+  
+  /* Save button styling */
+  .save-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 15px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  /* Save button hover effect */
+  .save-btn:hover {
+    background-color: #218838;
+  }
+  
+  /* Media Queries for Mobile Responsiveness */
+  
+  /* Adjust form container padding on small screens */
+  @media (max-width: 768px) {
+    .form-container {
+      padding: 15px;
+    }
+  
+    .form-title {
+      font-size: 18px;
+    }
+  
+    .employee-form {
+      grid-template-columns: 1fr; /* Stack the form fields vertically */
+      gap: 20px;
+    }
+  
+    .content-header {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .save-btn {
+      width: 100%; /* Make save button full width on small screens */
+    }
+  }
+  
+  /* Further adjustments for mobile devices (less than 480px) */
+  @media (max-width: 480px) {
+    .form-title {
+      font-size: 16px;
+    }
+  
+    .form-group input,
+    .form-group select {
+      font-size: 12px;
+      padding: 8px 10px;
+    }
+  
+    .save-btn {
+      padding: 8px 16px;
+    }
+  }
+  

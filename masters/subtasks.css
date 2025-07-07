@@ -1,0 +1,182 @@
+.content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .content-header h2 {
+    color: #4d5b6b;
+  }
+
+  .btn-primary {
+    background-color: #7a5ef8;
+    color: #fff;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .container {
+    
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .header h2 {
+    margin: 0;
+    font-size: 24px;
+    color: #2c3e50;
+  }
+
+  .header .buttons button {
+    padding: 8px 16px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+  }
+
+  .back-btn { background: #7c4dff; }
+  .new-btn { background: #2ecc71; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow-x: auto;
+  }
+
+  th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  th {
+    background: #f0f0f0;
+    color: #555;
+  }
+  .button-row {
+    display: flex;
+    
+    align-items: center;
+    gap: 10px;
+    margin-top: 1px;
+  }
+  
+  /* Base button style */
+  .btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+    padding: 8px 8px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  /* Individual colors */
+  .btn-view {
+    background-color: #00bcd4;
+  }
+  
+  .btn-edit {
+    background-color: #ffc107;
+  }
+  
+  .btn-delete {
+    background-color: #f44336;
+  }
+  
+  /* Hover effect */
+  .btn:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+  
+  /* Responsive */
+  @media (max-width: 600px) {
+    .button-row {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  
+    .btn {
+      width: 100%;
+      font-size: 16px;
+    }
+  }
+  
+  .actions button {
+    border: none;
+    padding: 8px;
+    margin: 0 4px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #fff;
+  }
+
+  .btn-view { background-color: #7c4dff; }
+  .btn-edit { background-color: #f39c12; }
+  .btn-delete { background-color: #e74c3c; }
+
+  @media (max-width: 768px) {
+    .header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .header .buttons {
+      margin-top: 10px;
+    }
+    th, td {
+      font-size: 14px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    table, thead, tbody, th, td, tr {
+      display: block;
+    }
+
+    thead {
+      display: none;
+    }
+
+    tr {
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 10px;
+    }
+
+    td {
+      padding: 8px;
+      text-align: right;
+      position: relative;
+    }
+
+    td::before {
+      content: attr(data-label);
+      position: absolute;
+      left: 10px;
+      text-align: left;
+      font-weight: bold;
+    }
+  }

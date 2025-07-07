@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sales</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="../enquiry/order.css">
+    <link rel="stylesheet" href="./sales.css">
+</head>
+
+<body>
+    <!-- Toggle Button -->
+    <div class="toggle-btn" id="toggleBtn">
+        <i class="fas fa-bars"></i>
+    </div>
+
+    <!-- Sidebar -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-logo">
+            <img src="../assets/logo.png" alt="Logo" />
+        </div>
+        <ul>
+            <li><a href="../index.html"><i class="fas fa-home"></i><span>Dashboard</span></a></li>
+            <li>
+                <a href="./sales-order-list.html">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    <span> Sales Orders</span>
+                </a>
+            </li>
+
+            <!-- Job Orders -->
+            <li>
+                <a href="../enquiry/enquiry-list.html">
+                    <i class="fas fa-briefcase"></i>
+                    <span> Job Orders</span>
+                </a>
+            </li>
+            <li><a href="../reports/reports.html"><i class="fas fa-check-circle"></i><span>Reports</span></a></li>
+            <li class="has-submenu">
+                <a href="#" class="submenu-toggle">
+                    <i class="fas fa-folder-open"></i><span>Masters</span><i class="fas fa-chevron-down arrow"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="../masters/customerList.html"><i class="fas fa-users"></i><span> Customers</span></a>
+                    </li>
+                    <li><a href="../masters/vendorList.html"><i class="fas fa-store"></i><span> Vendors</span></a></li>
+                    <li><a href="../masters/worktypeList.html"><i class="fas fa-tasks"></i><span> Work List</span></a>
+                    </li>
+                    <li><a href="../masters/Employee/employee.html"><i class="fas fa-user-tie"></i><span>
+                                Employees</span></a></li>
+                    <li><a href="../masters/Employee/emp-category.html"><i class="fas fa-layer-group"></i><span>
+                                Employee Categories</span></a></li>
+                    <li>
+                        <a href="../masters/item-names/item-name.html">
+                            <i class="fas fa-boxes"></i>
+                            <span>Item Types</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+            <li class="has-submenu">
+                <a href="#" class="submenu-toggle">
+                    <i class="fas fa-cog"></i><span>Settings</span><i class="fas fa-chevron-down arrow"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="../Settings/company-details.html"><i class="fas fa-users"></i><span>Company
+                                Details</span></a></li>
+                </ul>
+            </li>
+
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <div class="form-container">
+            <h2>Sales Order Form</h2>
+            <form class="order-in-form">
+                <form>
+                    <div class="section-header">
+                        <h3>ORDER DETAILS</h3>
+                    </div>
+
+                    <!-- Row 1 -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Sales Order ID</label>
+                            <input type="text" placeholder="Sales Order ID" />
+                        </div>
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="date" placeholder="Sales Order ID" />
+                        </div>
+                        <div class="form-group">
+                            <label>PO No.</label>
+                            <input type="text" placeholder="PO Number" />
+                        </div>
+                        <div class="form-group">
+                            <label>Name of Transporter</label>
+                            <input type="text" placeholder="Transporter Name" />
+                        </div>
+                        <div class="form-group">
+                            <label>Mode of Dispatch</label>
+                            <input type="text" placeholder="Transporter Name" />
+                        </div>
+                    </div>
+                    <div class="section-header">
+                        <h3>CUSTOMER DETAILS</h3>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Customer Name</label>
+                            <select>
+                                <option value="">Select Customer</option>
+                                <option value="customer1">Customer 1</option>
+                                <option value="customer2">Customer 2</option>
+                                <option value="customer3">Customer 3</option>
+                                <!-- Add more options as needed -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Customer ID</label>
+                            <input type="text" placeholder="Customer ID" />
+                        </div>
+                        <div class="form-group">
+                            <label>Contact Person</label>
+                            <input type="text" placeholder="Contact Person" />
+                        </div>
+                    </div>
+
+                    <!-- Existing Row -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Contact No.</label>
+                            <input type="text" placeholder="Contact No." />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Delivery Address 1</label>
+                            <input type="text" placeholder="Delivery Address" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Delivery Address 2</label>
+                            <input type="text" placeholder="Delivery Address" />
+                        </div>
+                    </div>
+
+                    <!-- Address Selection Options -->
+                    <div id="address-options" class="form-row" style="margin-top: 10px;">
+                        <label>
+                            <input type="radio" name="addressChoice" value="billing" onchange="handleAddressChoice()">
+                            Same as Billing Address
+                        </label>
+                        <label>
+                            <input type="radio" name="addressChoice" value="delivery" onchange="handleAddressChoice()">
+                            Same as Delivery Address
+                        </label>
+                        <label>
+                            <input type="radio" name="addressChoice" value="manual" onchange="handleAddressChoice()">
+                            Add New Billing Address
+                        </label>
+                    </div>
+
+
+                    <!-- Manual Entry (Hidden by default) -->
+                    <div id="manual-entry" style="display: none; margin-top: 15px;">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Billing Name</label>
+                                <input type="text" placeholder="Billing Name" />
+                            </div>
+                            <div class="form-group">
+                                <label>Contact Person</label>
+                                <input type="text" placeholder="Contact Person" />
+                            </div>
+                            <div class="form-group">
+                                <label>Phone</label>
+                                <input type="text" placeholder="Phone" />
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Address 1</label>
+                                <input type="text" placeholder="Address Line 1" />
+                            </div>
+                            <div class="form-group">
+                                <label>Address 2</label>
+                                <input type="text" placeholder="Address Line 2" />
+                            </div>
+                            <div class="form-group">
+                                <label>City</label>
+                                <input type="text" placeholder="City" />
+                            </div>
+                        </div>
+                        <div class="form-row">
+
+                            <div class="form-group">
+                                <label>State</label>
+                                <input type="text" placeholder="State" />
+                            </div>
+                            <div class="form-group">
+                                <label>Pincode</label>
+                                <input type="number" placeholder="Pincode" />
+                            </div>
+                            <div class="form-group">
+                                <!-- <label>Pincode</label>
+                                <input type="number" placeholder="Pincode" /> -->
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="section-header">
+                        <h3>SCHEDULES</h3>
+                    </div>
+
+                    <!-- Row 3 -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Reference Mail</label>
+                            <input type="email" placeholder="Reference Mail" />
+                        </div>
+                        <div class="form-group">
+                            <label>Mail Received Date</label>
+                            <input type="date" />
+                        </div>
+                        <div class="form-group">
+                            <label>Time</label>
+                            <input type="time" />
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class="section-header">
+                        <h3>MATERIAL DESCRIPTION</h3>
+                    </div>
+                    <div class="form-row">
+                        <!-- Material Type -->
+                        <div class="form-group">
+                            <label>Material Type</label>
+                            <select class="form-control">
+                                <option value="">Select Material Type</option>
+                                <option value="Satin">Satin</option>
+                                <option value="Taffeta">Taffeta</option>
+                                <option value="Cotton">Cotton</option>
+                                <option value="Polyester">Polyester</option>
+                                <option value="Nylon">Nylon</option>
+                                <option value="Woven">Woven</option>
+                                <option value="TPU">TPU (Transparent Polyurethane)</option>
+                                <option value="Paper">Paper</option>
+                                <option value="Tyvek">Tyvek</option>
+                                <option value="PVC">PVC</option>
+                                <option value="Heat Transfer">Heat Transfer Film</option>
+                                <option value="Adhesive">Adhesive Label</option>
+                                <option value="Die Cut">Die-Cut Sticker</option>
+                                <option value="Hologram">Holographic</option>
+                            </select>
+                        </div>
+
+
+                        <!-- Specification (Width & Height) -->
+                        <div class="form-group spec-group">
+                            <label>Specification</label>
+                            <div class="spec-inputs">
+                                <input type="text" placeholder="Width (mm)" />
+                                <input type="text" placeholder="Height (mm)" />
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="section-header">
+                        <h3>ITEM DETAILS</h3>
+                    </div>
+                    <div class="item-table-wrapper">
+                        <div class="item-table-header">
+                            <div>S.No</div>
+                            <div>Item Name</div>
+                            <div>Item Code</div>
+                            <div>EAN No.</div>
+                            <div>Month</div>
+                            <div>Size</div>
+                            <div>Quantity</div>
+                            <div>Action</div>
+                        </div>
+
+                        <div id="item-container">
+                            <div class="item-table-row">
+                                <div><input type="text" placeholder="S.No" /></div>
+                                <div>
+                                    <select>
+                                        <option value="">Select Item</option>
+                                        <option value="item1">Item 1</option>
+                                        <option value="item2">Item 2</option>
+                                        <option value="item3">Item 3</option>
+                                        <!-- Add more options as needed -->
+                                    </select>
+                                </div>
+
+                                <div><input type="text" placeholder="Item Code" /></div>
+                                <div><input type="text" placeholder="EAN Number" /></div>
+                                <div><input type="text" placeholder="Month" /></div>
+                                <div>
+                                    <select>
+                                        <option value="">Select Size</option>
+                                        <option value="S">Small</option>
+                                        <option value="M">Medium</option>
+                                        <option value="L">Large</option>
+                                        <option value="XL">Extra Large</option>
+                                        <!-- Add more sizes as needed -->
+                                    </select>
+                                </div>
+
+                                <div><input type="text" placeholder="Quantity" /></div>
+                                <div>
+                                    <button class="styled-add-btn" type="button" onclick="addItemRow()" title="Add Row">
+                                        <span class="plus-icon">＋</span>
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="section-header">
+                        <h3> INSTRUCTION</h3>
+                    </div>
+                    <div class="form-row" style="display: flex; gap: 20px; flex-wrap: wrap; align-items: flex-end;">
+                        <!-- Packing Section -->
+                        <div class="form-group">
+                            <label>Packing</label>
+                            <select id="packingSelect" onchange="toggleOtherPacking()">
+                                <option value="">Select Packing</option>
+                                <option value="500">500 PCS/Roll</option>
+                                <option value="1000">1000 PCS/Roll</option>
+                                <option value="other">Others</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" id="otherPackingGroup" style="display: none;">
+                            <label>Custom Packing</label>
+                            <input type="text" id="otherPackingInput" placeholder="e.g., 750 PCS/Roll" />
+                        </div>
+
+                        <!-- Finishing Section -->
+                        <div class="form-group">
+                            <label>Finishing</label>
+                            <select id="finishingSelect" onchange="toggleOtherFinishing()">
+                                <option value="">Select Finishing</option>
+                                <option value="roll">Roll Form</option>
+                                <option value="cut">Cut & Seal</option>
+                                <option value="other">Others</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" id="otherFinishingGroup" style="display: none;">
+                            <label>Custom Finishing</label>
+                            <input type="text" id="otherFinishingInput" placeholder="e.g., Fold & Stitch" />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group" style="flex: 1">
+                            <label>Special Instruction</label>
+                            <input type="text" placeholder="Special Instructions" />
+                        </div>
+                        <div class="form-group" style="flex: 1">
+                            <!-- <label>Special Instruction</label>
+                            <input type="text" placeholder="Special Instructions" /> -->
+                        </div>
+
+                    </div>
+
+
+
+
+                    <div class="section-header">
+                        <h3></h3>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Upload Images</label>
+                            <input type="file" id="imageInput" multiple accept="image/*" onchange="previewImages()" />
+                        </div>
+                    </div>
+
+                    <div id="imagePreview" class="image-preview-wrapper"></div>
+
+
+                    <!-- Actions -->
+                    <div class="form-actions">
+                        <button type="submit" class="save-btn">✔ Create</button>
+                    </div>
+                </form>
+        </div>
+
+
+    </main>
+
+    <script src="../sidebar-loader.js"></script>
+    <script src="./sales.js"></script>
+</body>
+
+</html>

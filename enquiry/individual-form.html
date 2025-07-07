@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Individual</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="./order.css">
+</head>
+
+<body>
+  <!-- Toggle Button -->
+  <div class="toggle-btn" id="toggleBtn">
+    <i class="fas fa-bars"></i>
+  </div>
+
+  <!-- Sidebar -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <img src="../assets/logo.png" alt="Logo" />
+    </div>
+    <ul>
+      <li><a href="../index.html"><i class="fas fa-home"></i><span>Dashboard</span></a></li>
+      <li>
+        <a href="../sales-orders/sales-order-list.html">
+          <i class="fas fa-file-invoice-dollar"></i>
+          <span> Sales Orders</span>
+        </a>
+      </li>
+
+      <!-- Job Orders -->
+      <li>
+        <a href="./enquiry-list.html">
+          <i class="fas fa-briefcase"></i>
+          <span> Job Orders</span>
+        </a>
+      </li>
+      <li><a href="../reports/reports.html"><i class="fas fa-check-circle"></i><span>Reports</span></a></li>
+      <li class="has-submenu">
+        <a href="#" class="submenu-toggle">
+          <i class="fas fa-folder-open"></i><span>Masters</span><i class="fas fa-chevron-down arrow"></i>
+        </a>
+        <ul class="submenu">
+          <li><a href="../masters/customerList.html"><i class="fas fa-users"></i><span> Customers</span></a></li>
+          <li><a href="../masters/vendorList.html"><i class="fas fa-store"></i><span> Vendors</span></a></li>
+          <li><a href="../masters/worktypeList.html"><i class="fas fa-tasks"></i><span> Work List</span></a></li>
+          <li><a href="../masters/Employee/employee.html"><i class="fas fa-user-tie"></i><span> Employees</span></a>
+          </li>
+          <li><a href="../masters/Employee/emp-category.html"><i class="fas fa-layer-group"></i><span> Employee
+                Categories</span></a></li>
+          <li>
+            <a href="../masters/item-names/item-name.html">
+              <i class="fas fa-boxes"></i>
+              <span>Item Types</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="has-submenu">
+        <a href="#" class="submenu-toggle">
+          <i class="fas fa-cog"></i><span>Settings</span><i class="fas fa-chevron-down arrow"></i>
+        </a>
+        <ul class="submenu">
+          <li><a href="../Settings/company-details.html"><i class="fas fa-users"></i><span>Company Details</span></a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content" id="mainContent">
+    <div class="form-container">
+      <h2>Individual Form</h2>
+      <form class="order-in-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Customer Name</label>
+            <input type="text" placeholder="Customer Name" />
+          </div>
+          <div class="form-group">
+            <label>Customer No</label>
+            <input type="text" placeholder="Customer No" />
+          </div>
+          <div class="form-group">
+            <label>Address</label>
+            <input type="text" placeholder="Address" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Alternative No</label>
+            <input type="text" placeholder="Alternative No" />
+          </div>
+          <div class="form-group">
+            <label>Landmark</label>
+            <input type="text" placeholder="Landmark" />
+          </div>
+          <div class="form-group">
+            <label>Area</label>
+            <input type="text" placeholder="Area" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Pincode</label>
+            <input type="text" placeholder="Pincode" />
+          </div>
+          <div class="form-group">
+            <label>City</label>
+            <input type="text" placeholder="City" />
+          </div>
+          <div class="form-group">
+            <label>Call Type</label>
+            <input type="text" placeholder="Call Type" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>AC Brand</label>
+            <input type="text" placeholder="AC Brand" />
+          </div>
+          <div class="form-group">
+            <label>AC Type</label>
+            <input type="text" placeholder="AC Type" />
+          </div>
+          <div class="form-group">
+            <label>AC Capacity</label>
+            <input type="text" placeholder="AC Capacity" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nature of Complaint</label>
+            <input type="text" placeholder="Nature of Complaint" />
+          </div>
+          <div class="form-group">
+            <label>How Many AC</label>
+            <input type="text" placeholder="How Many AC" />
+          </div>
+          <div class="form-group">
+            <label>AC Location</label>
+            <input type="text" placeholder="AC Location" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Remarks</label>
+            <input type="text" placeholder="Remarks" />
+          </div>
+          <div class="form-group">
+            <!-- Empty to maintain 3-column structure -->
+          </div>
+          <div class="form-group">
+            <!-- Empty to maintain 3-column structure -->
+          </div>
+        </div>
+      </form>
+
+      <h2>Work Information</h2>
+      <form class="work-info-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Type of Work</label>
+            <select>
+              <option>Select Work Type</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Assigned To</label>
+            <select>
+              <option>Select Assigned To</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Follow Up Date</label>
+            <input type="date" />
+          </div>
+        </div>
+
+
+
+        <div class="form-actions">
+          <button type="submit" class="save-btn">✔ Create</button>
+        </div>
+      </form>
+    </div>
+
+
+  </main>
+
+  <script src="../sidebar-loader.js"></script>
+</body>
+
+</html>
