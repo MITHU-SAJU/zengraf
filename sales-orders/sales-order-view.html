@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>sales order view</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="../enquiry/enquiry.css">
+    <link rel="stylesheet" href="./sales.css">
+
+</head>
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #f0f2f5;
+        margin: 0;
+    }
+
+    .container-fluid {
+        max-width: 1200px;
+        background: #ffffff;
+        margin: auto;
+        border-radius: 16px;
+        padding: 40px;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Section Headings */
+    .section-header {
+        padding: 16px 0;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #ccc;
+    }
+
+    .section-header::before {
+        content: '';
+        width: 6px;
+        height: 24px;
+        background-color: #007bff;
+        border-radius: 4px;
+    }
+
+    .section-header {
+        margin: 0;
+        font-size: 15px;
+        font-weight: 600;
+        color: #2c3e50;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        border-bottom: 2px solid #ccc;
+    }
+
+    /* Info Grid */
+    .info-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .info-card {
+        margin-top: 1rem;
+        background: #f9fafc;
+        padding: 16px 20px;
+        border-radius: 12px;
+        border: 1px solid #e1e4ea;
+        transition: box-shadow 0.3s ease;
+    }
+
+    .info-card:hover {
+        box-shadow: 0 4px 15px rgba(0, 123, 255, 0.1);
+    }
+
+    .info-card label {
+        font-size: 13px;
+        color: #6c757d;
+        margin-bottom: 6px;
+        display: block;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+    }
+
+    .info-card .value {
+        font-size: 16px;
+        color: #2d3436;
+        font-weight: 500;
+        word-wrap: break-word;
+    }
+
+    /* Tables */
+    .table-section {
+        margin-top: 10px;
+        overflow-x: auto;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    th,
+    td {
+        padding: 12px 16px;
+        border: 1px solid #dee2e6;
+        text-align: center;
+        font-size: 14px;
+    }
+
+    th {
+        background-color: #eef2f7;
+        font-weight: 600;
+        color: #333;
+    }
+
+    /* Image Preview */
+    .image-preview {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+        margin-top: 15px;
+    }
+
+    .image-preview img {
+        height: 120px;
+        width: auto;
+        border-radius: 10px;
+        border: 1px solid #ddd;
+        object-fit: cover;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        body {
+            padding: 20px;
+        }
+
+        .info-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .section-header h3 {
+            font-size: 18px;
+        }
+    }
+
+
+    .section-logo {
+        height: 60px;
+        width: auto;
+
+    }
+
+    .section-logo-header {
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        /* Push logo to right */
+        gap: 12px;
+    }
+</style>
+
+
+<body>
+
+    <!-- Sidebar will be injected here -->
+    <div class="toggle-btn" id="toggleBtn">
+        <i class="fas fa-bars"></i>
+    </div>
+
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-logo">
+            <img src="../assets/logo.png" alt="Logo" />
+        </div>
+        <ul>
+            <li><a href="../index.html"><i class="fas fa-home"></i><span>Dashboard</span></a></li>
+            <li>
+                <a href="./sales-order-list.html">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    <span> Sales Orders</span>
+                </a>
+            </li>
+
+            <!-- Job Orders -->
+            <li>
+                <a href="../enquiry/enquiry-list.html">
+                    <i class="fas fa-briefcase"></i>
+                    <span> Job Orders</span>
+                </a>
+            </li>
+            <li><a href="../reports/reports.html"><i class="fas fa-check-circle"></i><span>Reports</span></a></li>
+            <li class="has-submenu">
+                <a href="#" class="submenu-toggle">
+                    <i class="fas fa-folder-open"></i><span>Masters</span><i class="fas fa-chevron-down arrow"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="../masters/customerList.html"><i class="fas fa-users"></i><span> Customers</span></a>
+                    </li>
+                    <li><a href="../masters/vendorList.html"><i class="fas fa-store"></i><span> Vendors</span></a></li>
+                    <li><a href="../masters/worktypeList.html"><i class="fas fa-tasks"></i><span> Work List</span></a>
+                    </li>
+                    <li><a href="../masters/Employee/employee.html"><i class="fas fa-user-tie"></i><span>
+                                Employees</span></a></li>
+                    <li><a href="../masters/Employee/emp-category.html"><i class="fas fa-layer-group"></i><span>
+                                Employee Categories</span></a></li>
+                    <li>
+                        <a href="../masters/item-names/item-name.html">
+                            <i class="fas fa-boxes"></i>
+                            <span>Item Types</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+            <li class="has-submenu">
+                <a href="#" class="submenu-toggle">
+                    <i class="fas fa-cog"></i><span>Settings</span><i class="fas fa-chevron-down arrow"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="../Settings/company-details.html"><i class="fas fa-users"></i><span>Company
+                                Details</span></a></li>
+                </ul>
+            </li>
+
+        </ul>
+    </nav>
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <div class="content-header">
+            <h2> View Sales Orders</h2>
+            <!-- <a class="btn-primary" href="./add-employee.html">New Enquiry</a> -->
+            <a href="./sales-order-list.html" class="btn-primary">Back</a>
+        </div>
+        <div class="container-fluid">
+            <div class="section-logo-header">
+                <img src="../assets/logo.png" alt="Company Logo" class="section-logo">
+
+            </div>
+            <!-- Section: Delivery Info -->
+            <h2 class="section-header">Customer & Billing Details</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <label>Company Name</label>
+                    <div class="value">ABC Textiles Pvt. Ltd.</div>
+                </div>
+                <div class="info-card">
+                    <label>Billing Name</label>
+                    <div class="value">Mr. Rajesh Kumar</div>
+                </div>
+                <div class="info-card">
+                    <label>Contact No</label>
+                    <div class="value">+91 9876543210</div>
+                </div>
+            </div>
+
+            <!-- Section: Order Info -->
+            <h3 class="section-header">Order Information</h3>
+            <div class="info-grid">
+                <div class="info-card">
+                    <label>Sales Order ID</label>
+                    <div class="value"> BCS/19-20/ENQ/0050</div>
+                </div>
+                <div class="info-card">
+                    <label>Sales Order No</label>
+                    <div class="value">01</div>
+                </div>
+
+                <div class="info-card">
+                    <label>Item Name</label>
+                    <div class="value">D-mart Barcode Label</div>
+                </div>
+                <div class="info-card">
+                    <label>PO No</label>
+                    <div class="value">PO123456</div>
+                </div>
+                <div class="info-card">
+                    <label>Reference Mail</label>
+                    <div class="value">reference@mail.com</div>
+                </div>
+                <div class="info-card">
+                    <label>Mail Received</label>
+                    <div class="value">2025-07-01 | 11:30 AM</div>
+                </div>
+                <div class="info-card">
+                    <label>Approved On</label>
+                    <div class="value">2025-07-02</div>
+                </div>
+                <div class="info-card">
+                    <label>Assigned On</label>
+                    <div class="value">2025-07-03 | 3:00 PM</div>
+                </div>
+            </div>
+
+            <!-- Section: Delivery Info -->
+            <h2 class="section-header">Delivery & Transport</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <label>Delivery Address</label>
+                    <div class="value">12th Cross, Industrial Area, Mumbai - 400001</div>
+                </div>
+                <div class="info-card">
+                    <label>Mode of Dispatch</label>
+                    <div class="value">Surface</div>
+                </div>
+                <div class="info-card">
+                    <label>Name of Transporter</label>
+                    <div class="value">Blue Dart Logistics</div>
+                </div>
+            </div>
+
+            <!-- Section: Material -->
+            <h2 class="section-header">Material Description</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <label>Material Type</label>
+                    <div class="value">Satin</div>
+                </div>
+                <div class="info-card">
+                    <label>Specification</label>
+                    <div class="value">Width: 40mm, Height: 60mm</div>
+                </div>
+            </div>
+
+            <!-- Section: Item Table -->
+            <h2 class="section-header">Item Details</h2>
+            <div class="table-section">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Item Name</th>
+                            <th>Item Code</th>
+                            <th>EAN No.</th>
+                            <th>Month</th>
+                            <th>Size</th>
+                            <th>Quantity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Label Type A</td>
+                            <td>ITM001</td>
+                            <td>8901234567890</td>
+                            <td>July</td>
+                            <td>M</td>
+                            <td>1000</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Label Type B</td>
+                            <td>ITM002</td>
+                            <td>8901234567891</td>
+                            <td>August</td>
+                            <td>L</td>
+                            <td>1500</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Label Type C</td>
+                            <td>ITM003</td>
+                            <td>8901234567892</td>
+                            <td>September</td>
+                            <td>XL</td>
+                            <td>800</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Label Type D</td>
+                            <td>ITM004</td>
+                            <td>8901234567893</td>
+                            <td>October</td>
+                            <td>S</td>
+                            <td>1200</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="6" style="text-align: right; font-weight: bold;">Total Quantity</td>
+                            <td style="font-weight: bold;">4500</td>
+                        </tr>
+                    </tfoot>
+
+                </table>
+            </div><br><br>
+
+            <!-- Section: Instructions -->
+            <h2 class="section-header">Printing Details</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <label>Packing</label>
+                    <div class="value">500 PCS/Roll</div>
+                </div>
+                <div class="info-card">
+                    <label>Finishing</label>
+                    <div class="value">Cut & Seal</div>
+                </div>
+                <div class="info-card">
+                    <label>Special Instruction</label>
+                    <div class="value">Handle with care. Urgent delivery.</div>
+                </div>
+            </div>
+
+            <!-- Section: Uploaded Images -->
+            <h2 class="section-header">Uploaded Images</h2>
+            <div class="image-preview">
+                <img src="https://via.placeholder.com/140x120" alt="Image 1">
+                <img src="https://via.placeholder.com/140x120" alt="Image 2">
+            </div>
+        </div>
+
+        <div class="print-btn-container">
+            <a href="./sales-print.html" class="print-btn">
+                🖨 Print
+            </a>
+        </div>
+
+
+        <script src="../sidebar-loader.js"></script>
+
+</body>
+
+</html>
