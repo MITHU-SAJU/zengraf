@@ -6,7 +6,138 @@
   <title>Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link rel="stylesheet" href="styles.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Ensure all cards have exactly the same height */
+    .equal-height-card {
+      height: 280px;
+      /* You can adjust this value */
+      display: flex;
+      flex-direction: column;
+      background-color: white;
+    }
+
+
+    .equal-height-card .card-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+    }
+
+    .card-header {
+      background: #f8f9fa;
+      font-weight: bold;
+      font-size: 0.85rem;
+      padding: 0.5rem 1rem;
+      color: black;
+    }
+
+
+    canvas {
+      max-width: 100%;
+      max-height: 160px;
+      /* Keeps charts from stretching too much */
+    }
+
+    .legend-dot {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+
+    .dashboard-title {
+      color: #1b5e20;
+      font-weight: 700;
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    /* Lists & Status Section */
+    .lists,
+    .status-section {
+      margin-top: 2rem;
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .list-box,
+    .status-box {
+      flex: 1;
+      background: white;
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .view-all-btn {
+      background: #1b5e20;
+      color: white;
+      padding: 0.4rem 1rem;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .view-all-btn:hover {
+      background: #2e7d32;
+    }
+
+    table {
+      width: 100%;
+      margin-top: 1rem;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 0.5rem;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background: #f1f8e9;
+    }
+
+    .status-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.8rem;
+    }
+
+    .progress {
+      flex: 1;
+      height: 8px;
+      background: #e0e0e0;
+      border-radius: 4px;
+      margin-left: 1rem;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      transition: width 0.4s ease;
+    }
+  </style>
 </head>
 
 <body>
@@ -79,227 +210,456 @@
   <main class="main-content" id="mainContent">
     <div class="content-header">
       <h2>Dashboard</h2>
+
+
     </div>
 
-    <div class="dashboard">
-      <!-- Top 4 Cards -->
-      <div class="card-group">
-        <div class="card" style="background: linear-gradient(135deg, #667eea, #764ba2);">
-          <i class="fas fa-box"></i>
-          <h3>Order In</h3>
-          <p>04</p>
-        </div>
+    <!-- Dashboard Cards Row -->
+    <div class="row g-4 mt-3">
 
-        <div class="card" style="background: linear-gradient(135deg, #43cea2, #185a9d);">
-          <i class="fas fa-dolly"></i>
-          <h3>Order Out</h3>
-          <p>02</p>
-        </div>
-
-        <div class="card" style="background: linear-gradient(135deg, #f7971e, #ffd200);">
-          <i class="fas fa-users"></i>
-          <h3>Customers</h3>
-          <p>00</p>
-        </div>
-
-        <div class="card" style="background: linear-gradient(135deg, #fc4a1a, #f7b733);">
-          <i class="fas fa-user-tie"></i>
-          <h3>Vendors</h3>
-          <p>00</p>
+      <!-- 1. Total Orders Received -->
+      <div class="col-lg-4 col-md-6">
+        <div class="card equal-height-card shadow-sm">
+          <div class="card-header">TOTAL ORDERS RECEIVED</div>
+          <div class="card-body">
+            <canvas id="ordersChart"></canvas>
+            <div class="d-flex justify-content-between mt-2 text-muted small w-100">
+              <span>Today</span><span>Week</span><span>Mon.</span><span>Month</span><span>Year</span>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- Bottom 2 Cards -->
-      <div class="card-group">
-        <div class="card" style="background: linear-gradient(135deg, #ff9a9e, #fad0c4);">
-          <i class="fas fa-user-friends"></i>
-          <h3>Employees</h3>
-          <p>04</p>
-        </div>
-
-        <div class="card" style="background: linear-gradient(135deg, #89f7fe, #66a6ff);">
-          <i class="fas fa-tasks fa-2x"></i>
-          <h3>Work Types</h3>
-          <p>04</p>
-        </div>
-
-        <div class="card">
-
-        </div>
-
-        <div class="card" ">
-          
+      <!-- 2. Orders in Production -->
+      <div class="col-lg-4 col-md-6">
+        <div class="card equal-height-card shadow-sm">
+          <div class="card-header">ORDERS IN PRODUCTION</div>
+          <div class="card-body">
+            <canvas id="productionChart"></canvas>
+            <div class="mt-2 small text-dark">
+              <span class="legend-dot bg-success"></span> Completed
+              <span class="legend-dot bg-warning ms-3"></span> In Progress
+            </div>
+          </div>
         </div>
       </div>
+
+      <!-- 3. Order Age -->
+      <div class="col-lg-4 col-md-6">
+        <div class="card equal-height-card shadow-sm">
+          <div class="card-header">ORDER AGE</div>
+          <div class="card-body">
+            <canvas id="ageChart"></canvas>
+            <div class="text-center mt-2 text-muted small">Aging Buckets</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. On-Time Delivery % -->
+      <div class="col-lg-4 col-md-6">
+        <div class="card equal-height-card shadow-sm">
+          <div class="card-header">ON-TIME DELIVERY %</div>
+          <div class="card-body">
+            <canvas id="onTimeGauge"></canvas>
+            <div class="mt-2 small text-dark">
+              <span>On-time Delivery</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Job Delay Alerts -->
+      <div class="col-lg-4 col-md-6">
+        <div class="card equal-height-card shadow-sm">
+          <div class="card-header">JOB DELAY ALERTS</div>
+          <div class="card-body">
+            <canvas id="delayChart" width="200" height="200"></canvas>
+            <div class="mt-2 small text-dark">
+              <span class="legend-dot bg-danger"></span> Delayed Jobs
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Rework/Rejection % -->
+      <div class="col-lg-4 col-md-6">
+        <div class="card equal-height-card shadow-sm">
+          <div class="card-header">REWORK/REJECTION %</div>
+          <div class="card-body">
+            <canvas id="reworkChart"></canvas>
+            <div class="d-flex justify-content-center gap-4 small mt-2 text-dark">
+              <div><span class="legend-dot bg-success"></span> Good</div>
+              <div><span class="legend-dot bg-danger"></span> Rework/Reject</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
-    
-  
-    <div class=" lists">
-          <div class="list-box">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-              <h3>Order In List</h3>
-              <a href="./enquiry/enquiry-list.html" class="view-all-btn">View All</a>
-            </div>
-            <table>
-              <thead>
-                <tr>
-                  <th>S. No</th>
-                  <th>Order In ID</th>
-                  <th>Customer Name</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>#A123</td>
-                  <td>John Enterprises</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>#B456</td>
-                  <td>Golden Threads</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>#C789</td>
-                  <td>Knit & Fit</td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>#D012</td>
-                  <td>Elite Fashions</td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>#E345</td>
-                  <td>Urban Stitch</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
 
-
-          <div class="list-box">
-
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-              <h3>Order Out List</h3>
-              <a href="./enquiry/enquiry-list.html" class="view-all-btn">View All</a>
-            </div>
-            <table>
-              <thead>
-                <tr>
-                  <th>S. No</th>
-                  <th>Order Out ID</th>
-                  <th>Vendor Name</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>#X123</td>
-                  <td>Raj Stitchers</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>#Y456</td>
-                  <td>Star Exports</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>#Z789</td>
-                  <td>Mega Tailors</td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>#W012</td>
-                  <td>Craft Point</td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>#Q345</td>
-                  <td>Bright Wear</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+    <!-- Lists Section -->
+    <div class="lists">
+      <div class="list-box">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <h3>Order In List</h3>
+          <a href="./enquiry/enquiry-list.html" class="view-all-btn">View All</a>
         </div>
+        <table>
+          <thead>
+            <tr>
+              <th>S. No</th>
+              <th>Order In ID</th>
+              <th>Customer Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>#A123</td>
+              <td>John Enterprises</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>#B456</td>
+              <td>Golden Threads</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>#C789</td>
+              <td>Knit & Fit</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>#D012</td>
+              <td>Elite Fashions</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>#E345</td>
+              <td>Urban Stitch</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-        <div class="status-section">
-          <div class="status-box">
-            <h3>Order In Status</h3>
-            <ul>
-              <li class="status-item">
-                <div class="status-label">
-                  <i class="fas fa-check-circle" style="color: green;"></i> Completed
-                </div>
-                <span class="status-count">8</span>
-                <div class="progress">
-                  <div class="progress-bar" style="width: 100%; background-color: green;"></div>
-                </div>
-              </li>
-              <li class="status-item">
-                <div class="status-label">
-                  <i class="fas fa-hourglass-half" style="color: orange;"></i> Partially Completed
-                </div>
-                <span class="status-count">2</span>
-                <div class="progress">
-                  <div class="progress-bar" style="width: 50%; background-color: orange;"></div>
-                </div>
-              </li>
-              <li class="status-item">
-                <div class="status-label">
-                  <i class="fas fa-times-circle" style="color: red;"></i> Not Started
-                </div>
-                <span class="status-count">0</span>
-                <div class="progress">
-                  <div class="progress-bar" style="width: 0%; background-color: red;"></div>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          <div class="status-box">
-            <h3>Order Out Status</h3>
-            <ul>
-              <li class="status-item">
-                <div class="status-label">
-                  <i class="fas fa-check-circle" style="color: green;"></i> Completed
-                </div>
-                <span class="status-count">6</span>
-                <div class="progress">
-                  <div class="progress-bar" style="width: 75%; background-color: green;"></div>
-                </div>
-              </li>
-              <li class="status-item">
-                <div class="status-label">
-                  <i class="fas fa-hourglass-half" style="color: orange;"></i> Partially Completed
-                </div>
-                <span class="status-count">3</span>
-                <div class="progress">
-                  <div class="progress-bar" style="width: 40%; background-color: orange;"></div>
-                </div>
-              </li>
-              <li class="status-item">
-                <div class="status-label">
-                  <i class="fas fa-times-circle" style="color: red;"></i> Not Started
-                </div>
-                <span class="status-count">0</span>
-                <div class="progress">
-                  <div class="progress-bar" style="width: 0%; background-color: red;"></div>
-                </div>
-              </li>
-            </ul>
-          </div>
+      <div class="list-box">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <h3>Order Out List</h3>
+          <a href="./enquiry/enquiry-list.html" class="view-all-btn">View All</a>
         </div>
+        <table>
+          <thead>
+            <tr>
+              <th>S. No</th>
+              <th>Order Out ID</th>
+              <th>Vendor Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>#X123</td>
+              <td>Raj Stitchers</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>#Y456</td>
+              <td>Star Exports</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>#Z789</td>
+              <td>Mega Tailors</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>#W012</td>
+              <td>Craft Point</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>#Q345</td>
+              <td>Bright Wear</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
+    <!-- Status Section -->
+    <div class="status-section">
+      <div class="status-box">
+        <h3>Order In Status</h3>
+        <ul class="list-unstyled">
+          <li class="status-item">
+            <div class="status-label"><i class="fas fa-check-circle text-success"></i> Completed</div>
+            <span class="status-count">8</span>
+            <div class="progress">
+              <div class="progress-bar bg-success" style="width:100%"></div>
+            </div>
+          </li>
+          <li class="status-item">
+            <div class="status-label"><i class="fas fa-hourglass-half text-warning"></i> Partially Completed</div>
+            <span class="status-count">2</span>
+            <div class="progress">
+              <div class="progress-bar bg-warning" style="width:50%"></div>
+            </div>
+          </li>
+          <li class="status-item">
+            <div class="status-label"><i class="fas fa-times-circle text-danger"></i> Not Started</div>
+            <span class="status-count">0</span>
+            <div class="progress">
+              <div class="progress-bar bg-danger" style="width:0%"></div>
+            </div>
+          </li>
+        </ul>
+      </div>
 
-
-
+      <div class="status-box">
+        <h3>Order Out Status</h3>
+        <ul class="list-unstyled">
+          <li class="status-item">
+            <div class="status-label"><i class="fas fa-check-circle text-success"></i> Completed</div>
+            <span class="status-count">6</span>
+            <div class="progress">
+              <div class="progress-bar bg-success" style="width:75%"></div>
+            </div>
+          </li>
+          <li class="status-item">
+            <div class="status-label"><i class="fas fa-hourglass-half text-warning"></i> Partially Completed</div>
+            <span class="status-count">3</span>
+            <div class="progress">
+              <div class="progress-bar bg-warning" style="width:40%"></div>
+            </div>
+          </li>
+          <li class="status-item">
+            <div class="status-label"><i class="fas fa-times-circle text-danger"></i> Not Started</div>
+            <span class="status-count">0</span>
+            <div class="progress">
+              <div class="progress-bar bg-danger" style="width:0%"></div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
   </main>
 
-
-  <!-- Sidebar loading script -->
+  <!-- Scripts -->
   <script src="sidebar-loader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    $(document).ready(function () {
+
+      // Sample data (replace with API later)
+      const data = {
+        ordersReceived: [12, 45, 78, 92, 180],
+        production: {
+          completed: [65, 80, 90],
+          inProgress: [20, 35, 25]
+        },
+        orderAge: [45, 38, 25, 15, 78],
+        onTimeDelivery: 95,
+        delayGrid: {
+          x: 7,
+          y: 4
+        },
+        rework: {
+          good: 92,
+          bad: 8
+        }
+      };
+
+      // 1. Total Orders Received
+      new Chart("ordersChart", {
+        type: 'bar',
+        data: {
+          labels: ['Today', 'Week', 'Mon.', 'Month', 'Year'],
+          datasets: [{
+              type: 'line',
+              label: 'Trend',
+              data: [10, 38, 70, 65, 180],
+              borderColor: '#2196f3',
+              backgroundColor: 'rgba(33,150,243,0.1)',
+              tension: 0.4,
+              pointRadius: 4
+            },
+            {
+              type: 'bar',
+              label: 'Orders',
+              data: data.ordersReceived,
+              backgroundColor: '#a5d6a7'
+            }
+          ]
+        },
+        options: {
+          plugins: {
+            legend: {
+              display: false
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+
+      // 2. Orders in Production
+      new Chart("productionChart", {
+        type: 'bar',
+        data: {
+          labels: ['Line 1', 'Line 2', 'Line 3'],
+          datasets: [{
+              label: 'Completed',
+              data: data.production.completed,
+              backgroundColor: '#4caf50'
+            },
+            {
+              label: 'In Progress',
+              data: data.production.inProgress,
+              backgroundColor: '#ffca28'
+            }
+          ]
+        },
+        options: {
+          plugins: {
+            legend: {
+              display: false
+            }
+          },
+          scales: {
+            x: {
+              stacked: true
+            },
+            y: {
+              stacked: true,
+              beginAtZero: true
+            }
+          }
+        }
+      });
+
+      // 3. Order Age
+      new Chart("ageChart", {
+        type: 'bar',
+        data: {
+          labels: ['1', '2', '3', '4', '4+'],
+          datasets: [{
+            label: 'Orders',
+            data: data.orderAge,
+            backgroundColor: '#66bb6a'
+          }]
+        },
+        options: {
+          plugins: {
+            legend: {
+              display: false
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        },
+        plugins: [{
+          id: 'redDelayDot',
+          afterDatasetsDraw(chart) {
+            const ctx = chart.ctx;
+            const lastBar = chart.getDatasetMeta(0).data[4];
+            ctx.save();
+            ctx.fillStyle = '#e53935';
+            ctx.beginPath();
+            ctx.arc(lastBar.x, lastBar.y - 20, 8, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+          }
+        }]
+      });
+
+      // 4. On-Time Delivery Gauge
+      new Chart("onTimeGauge", {
+        type: 'doughnut',
+        data: {
+          datasets: [{
+            data: [data.onTimeDelivery, 100 - data.onTimeDelivery],
+            backgroundColor: ['#4caf50', '#e0e0e0'],
+            borderWidth: 0,
+            cutout: '80%'
+          }]
+        },
+        options: {
+          rotation: -90,
+          circumference: 180,
+          plugins: {
+            legend: {
+              display: false
+            },
+            tooltip: {
+              enabled: false
+            }
+          }
+        },
+        plugins: [{
+          id: "centerText",
+          afterDraw(chart) {
+            const {
+              ctx,
+              chartArea: {
+                width,
+                height
+              }
+            } = chart;
+            ctx.save();
+            ctx.font = "bold 28px Arial";
+            ctx.fillStyle = "#2e7d32";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillText(data.onTimeDelivery + "%", width / 2, height / 1.65);
+            ctx.restore();
+          }
+        }]
+      });
+
+      // 5. Job Delay Alerts Grid
+      const gridCanvas = document.getElementById("delayChart");
+      const ctxGrid = gridCanvas.getContext("2d");
+      const gridSize = 10,
+        cell = 18,
+        start = 10;
+      for (let x = 0; x < gridSize; x++) {
+        for (let y = 0; y < gridSize; y++) {
+          ctxGrid.fillStyle = (x === data.delayGrid.x && y === data.delayGrid.y) ? "#e53935" : "#a5d6a7";
+          ctxGrid.fillRect(start + x * cell, start + y * cell, cell - 2, cell - 2);
+        }
+      }
+
+      // 6. Rework / Rejection Pie
+      new Chart("reworkChart", {
+        type: 'doughnut',
+        data: {
+          labels: ['Good', 'Bad'],
+          datasets: [{
+            data: [data.rework.good, data.rework.bad],
+            backgroundColor: ['#4caf50', '#e53935'],
+            borderWidth: 0
+          }]
+        },
+        options: {
+          plugins: {
+            legend: {
+              display: false
+            }
+          },
+          cutout: '70%'
+        }
+      });
+
+    });
+  </script>
 </body>
 
 </html>
